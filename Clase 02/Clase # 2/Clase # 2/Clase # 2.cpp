@@ -30,6 +30,37 @@ int main() {
 	 sintaxis cin>>nombre de la variable;
 	 */
 	cout << "Ingrese el valor de la nota1" << endl;
-	cin >> nota1;  
+	cin >> nota1;  //que pasa si el usuario -1 o una nota mayor a 100
+	//el usuario llega y me pone 101
+	if (nota1<0 || nota1>100){
+		cout << "Nota en el rango no permitido" << endl;
+	}
+	cout << "Ingrese el valor de la nota2" << endl;
+	cin >> nota3;
+	if (nota2 < 0 || nota2>100) {
+		cout << "Nota en el rango no permitido" << endl;
+	}
+	cout << "Ingrese el valor de la nota1" << endl;
+	cin >> nota3;
+	if (nota3 < 0 || nota3>100) {
+		cout << "Nota en el rango no permitido" << endl;
+	}
+	/*como se que va entre parentecis 
+	primero va la suma y luego la multiplicacion o division 
+	num1+num2*num3;
+	(num1+num2)*3;
+	*/
+	promedio = (nota1 + nota2 + nota3) / 3;
+	cout << "Nota en el promedio es"<<promedio << endl;
+	if (promedio >= 70){
+		cout << "Estudiante aprovo" << endl;
+	}
+	else if (promedio >= 6 && promedio < 7)   //pero el promedio debe de estar en el rango IGUAL  a 6 pero menor que 7
+	{
+		cout << "Estudiante va a reposicion" << endl;
+	}
+	else {
+		cout << "Estudiante reprovo" << endl;
+	}
 }
 
