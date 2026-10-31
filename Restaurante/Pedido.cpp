@@ -1,5 +1,6 @@
 #include "Pedido.h"
-
+#include<iostream>
+using namespace std;
 Pedido::Pedido() {
     cantidadPlatos = 0;
     tipo = ' ';
@@ -50,49 +51,63 @@ double Pedido::calcularPrecios(){
     double bebidas=0.0;
     double platos=0.0;
     double subtotal = 0.0;
-    double descuento = 0.0;
+    double descuentoTotal = 0.0;
     double precioFinal = 0.0;
 
     if (this->tipo == 'D') {
         platos = cantidadPlatos*2500;
-        bebidas = 0;
+       
     }
     if (this->tipo == 'A') {
         platos = cantidadPlatos * 3500;
         bebidas = cantidadBebidas * 1000;
+        
     }
     if (this->tipo == 'C') {
         platos = cantidadPlatos * 4500;
         int bebidasGratis = cantidadPlatos;
         int bebidasadicional = cantidadBebidas - bebidasGratis;
-        if (bebidasadicional < 0) {
+        if (bebidasadicional <= 0) {
             int bebidasadicional = 0;
         }
         bebidas = bebidasadicional * 1000;
+     
     }
     subtotal = bebidas + platos;
-    descuento = subtotal * this->descuento()/100;
-    precioFinal = subtotal - descuento;
+    descuentoTotal = subtotal*descuento();
+    precioFinal = subtotal - descuentoTotal;
 
-
-
-    return precioFinal;
+    cout << "Precio total de los platos: " << platos << endl;
+    cout << "Precio total de las bebida: " << bebidas << endl;
+    cout << "Porcentaje del descuento: " << descuento() * 100 << "%" << endl;
+    cout << "Precion final con descuento: " << precioFinal << endl;
+    return 0;
 }
 
-double Pedido::descuento(){
+double Pedido::descuento(){        
     if (cantidadPlatos >= 10) {
-
-        return 15;
-
+        return 0.15;
     }
     if (cantidadPlatos > 8 && cantidadPlatos < 9) {
-
-        return 10;
-
+       
+        return 0.10;
     }
+    if (cantidadPlatos > 5 && cantidadPlatos < 7) {
+       
+        return 0.05;
+    }
+    if (cantidadPlatos < 5) {
+       
+        return 0.01;
+    }
+}
 
-
-    return 0.0;
+void Pedido::generarFactura(){
+    cout << "identificador: " << getCodigo() << endl;
+    cout << "Tipo de pedido: "<< getTipo()<< endl;
+    cout <<"Cantidad de platos: "<< getCantidadPlatos() << endl;
+    cout <<"Cantidad de bebidas: "<<getCantidadBebidas() << endl;
+    cout << calcularPrecios() << endl;
 }
 
 string Pedido::tostring() {

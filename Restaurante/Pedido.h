@@ -20,6 +20,7 @@ public:
 	string getCodigo();
 	double calcularPrecios();
 	double descuento();
+	void generarFactura();
 	string tostring();
 
 
